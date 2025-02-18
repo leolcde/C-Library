@@ -40,6 +40,8 @@ SRC	=	src/free_array.c \
 		src/my_strstr.c \
 		src/my_str_to_word_array.c \
 		src/sort_by_char.c \
+		src/my_str_to_word_array.c \
+		src/clean_str.c \
 
 SRC2 =  include/my.h    \
 

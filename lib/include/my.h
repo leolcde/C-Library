@@ -57,7 +57,9 @@ char *my_strdup(char *str);
 int my_strlen(char const *str);
 int my_strncmp(char const *s1, char const *s2, int n);
 char *my_strstr(char *str, const char *to_find);
-char **my_str_to_word_array(char const *str);
+char **my_str_to_word_array(const char *str, const char *delimiters);
 void free_word_array(char **word_array, int word_count);
+char *my_strcat(char *dest, char const *src);
+char *clean_str(char *str);
 
 #endif /* MY LIB */

@@ -1,57 +1,73 @@
 /*
-** EPITECH PROJECT, 2024
-** Phoenix_Day4
+** EPITECH PROJECT, 2025
+** Mini_shell1
 ** File description:
-** split_string
+** my_str_delim
 */
 
 #include "../include/my.h"
 
-int count_words(char const *str)
+bool is_delimiter(char c, const char *delimiters)
 {
-    int a = 0;
-    int b = 0;
-
-    while (str[a] != '\0') {
-        if (my_isalnum(str[a]) == 1 && my_isalnum(str[a + 1]) != 1) {
-            b++;
-        }
-        a++;
+    for (int i = 0; delimiters[i] != '\0'; i++) {
+        if (c == delimiters[i])
+            return true;
     }
-    return b;
+    return false;
 }
 
-int len_of_word(char *str, int i)
+int count_of_word_delim(const char *str, const char *delimiters)
 {
-    while (str[i] != '\0') {
-        if (my_isalnum(str[i]) != 1) {
-            return i;
+    int count = 0;
+    bool in_word = false;
+
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (is_delimiter(str[i], delimiters)) {
+            in_word = false;
+            continue;
         }
-        i++;
+        if (!in_word) {
+            in_word = true;
+            count++;
+        }
     }
-    return i;
+    return count;
 }
 
-char **my_str_to_word_array(char const *str)
+int len_delim(const char *str, int start, const char *delimiters)
 {
-    int words_total = count_words(str);
+    int length = 0;
+
+    while (str[start] != '\0' && !is_delimiter(str[start], delimiters)) {
+        length++;
+        start++;
+    }
+    return length;
+}
+
+void copy_word(char *dest, const char *src, int start, int length)
+{
+    for (int j = 0; j < length; j++) {
+        dest[j] = src[start + j];
+    }
+    dest[length] = '\0';
+}
+
+char **my_str_to_word_array(const char *str, const char *delimiters)
+{
+    int words_total = count_of_word_delim(str, delimiters);
     char **array = malloc(sizeof(char *) * (words_total + 1));
-    int a = 0;
-    int b = 0;
-    int c = 0;
+    int k = 0;
+    int length;
 
-    while (b < words_total) {
-        array[b] = malloc(sizeof(char) * (len_of_word((char *)str, a) + 1));
-        c = 0;
-        while (str[a] != '\0' && my_isalnum(str[a]) == 1) {
-            array[b][c] = str[a];
-            c++;
-            a++;
-        }
-        array[b][c] = '\0';
-        a++;
-        b++;
+    for (int i = 0; i < words_total; i++) {
+        while (str[k] != '\0' && is_delimiter(str[k], delimiters))
+            k++;
+        length = len_delim(str, k, delimiters);
+        array[i] = malloc(sizeof(char) * (length + 1));
+        copy_word(array[i], str, k, length);
+        k += length;
     }
-    array[b] = NULL;
+    array[words_total] = NULL;
     return array;
 }
