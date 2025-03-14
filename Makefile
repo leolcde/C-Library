@@ -10,7 +10,7 @@
 CC	=	gcc
 CFLAGS	=	-g
 
-SRC	=	src/file.c \
+SRC	=	src/main.c \
 
 OBJ	=	$(SRC:.c=.o)
 

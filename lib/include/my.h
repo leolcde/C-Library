@@ -61,5 +61,6 @@ char **my_str_to_word_array(const char *str, const char *delimiters);
 void free_word_array(char **word_array, int word_count);
 char *my_strcat(char *dest, char const *src);
 char *clean_str(char *str);
+char **print_array(char **args);
 
 #endif /* MY LIB */
