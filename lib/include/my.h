@@ -30,9 +30,9 @@ typedef struct my_linkedlist_s {
 
 int is_prime_number(int nb);
 int my_getnbr(char const *str);
-int my_isalpha(int c);
+int my_isalpha(char c);
 int my_isdigit(char c);
-int my_isalnum(int c);
+int my_isalnum(char *str);
 int my_isnumber(char *str);
 int linkedlist_len(my_linkedlist_t *list);
 int my_printf(const char *format, ...);

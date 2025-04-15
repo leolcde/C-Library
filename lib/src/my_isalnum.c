@@ -7,10 +7,11 @@
 
 #include "../include/my.h"
 
-int my_isalnum(int c)
+int my_isalnum(char *str)
 {
-    if ((my_isdigit(c) == 1) || (my_isalpha(c) == 1))
-        return (1);
-    else
-        return (0);
+    for (int i = 0; str[i] != '\0'; i++) {
+        if ((my_isdigit(i) == 1) || (my_isalpha(i) == 1))
+            return 1;
+        return 0;
+    }
 }
