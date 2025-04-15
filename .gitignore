@@ -1,5 +1,4 @@
 # Disallowed source files:
-main.c
 
 # Project local config:
 .cache/
